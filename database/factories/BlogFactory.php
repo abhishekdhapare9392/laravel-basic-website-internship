@@ -19,6 +19,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
+            'author_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 }

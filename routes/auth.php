@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\admin\BlogController as AdminBlogController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,4 +74,18 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+
+        // Blogs
+    Route::get('/admin/blogs', [AdminBlogController::class, 'index'])->name('admin.blogs');
+
+    Route::get('/admin/blogs/create', [AdminBlogController::class, 'create'])->name('admin.blogs.create');
+
+    Route::post('/admin/blogs/store', [AdminBlogController::class, 'store'])->name('admin.blogs.store');
+
+    Route::get('/admin/blogs/edit/{id}', [AdminBlogController::class, 'edit'])->name('admin.blogs.edit');
+
+    Route::post('/admin/blogs/update/{id}', [AdminBlogController::class, 'update'])->name('admin.blogs.update');
+
+    Route::get('/admin/blogs/delete/{id}', [AdminBlogController::class, 'destroy'])->name('admin.blogs.delete');
 });
